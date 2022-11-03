@@ -1,0 +1,262 @@
+[gd_scene load_steps=10 format=3 uid="uid://bwt21krr04l13"]
+
+[ext_resource type="Script" path="res://addons/sprite_cropper/DropZone.gd" id="1_nevy8"]
+[ext_resource type="FontFile" uid="uid://c243kymkbdt4j" path="res://Fonts/OFL/Delicious/Delicious-Handrawn.ttf" id="1_uw8ix"]
+[ext_resource type="Texture2D" uid="uid://eyulp6dhf2tt" path="res://addons/sprite_cropper/Images/spyglass.png" id="2_33qnu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqdxj"]
+bg_color = Color(0.321569, 0.321569, 0.321569, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75hhb"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iespw"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdyji"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_axhy1"]
+Button/font_sizes/font_size = 36
+Button/fonts/font = ExtResource("1_uw8ix")
+Button/styles/hover = SubResource("StyleBoxFlat_rqdxj")
+Button/styles/normal = SubResource("StyleBoxFlat_75hhb")
+Button/styles/pressed = SubResource("StyleBoxFlat_iespw")
+Panel/styles/panel = SubResource("StyleBoxFlat_cdyji")
+
+[sub_resource type="LabelSettings" id="LabelSettings_x3s6m"]
+font = ExtResource("1_uw8ix")
+font_size = 58
+outline_size = 5
+outline_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
+[node name="Sprite Cropper" type="Control"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_axhy1")
+metadata/_edit_horizontal_guides_ = []
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 74.0
+text = "Image to Slice"
+label_settings = SubResource("LabelSettings_x3s6m")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="DropZone" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+offset_top = 78.0
+offset_right = 1152.0
+offset_bottom = 278.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nevy8")
+
+[node name="Label" type="Label" parent="VBoxContainer/DropZone"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Drop Images Here"
+label_settings = SubResource("LabelSettings_x3s6m")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Sprite" type="TextureRect" parent="VBoxContainer/DropZone"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ignore_texture_size = true
+
+[node name="FileNameLineEdit" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+offset_top = 282.0
+offset_right = 1152.0
+offset_bottom = 313.0
+size_flags_horizontal = 3
+placeholder_text = "File Name"
+alignment = 1
+max_length = 20
+caret_blink = true
+
+[node name="FileDestCont" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+offset_top = 317.0
+offset_right = 1152.0
+offset_bottom = 348.0
+
+[node name="LineEdit2" type="LineEdit" parent="VBoxContainer/FileDestCont"]
+layout_mode = 2
+offset_right = 1122.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+tooltip_text = "Destination for output"
+text = "res://"
+placeholder_text = "Destination"
+alignment = 1
+caret_blink = true
+
+[node name="SearchDestButt" type="Button" parent="VBoxContainer/FileDestCont"]
+layout_mode = 2
+offset_left = 1126.0
+offset_right = 1152.0
+offset_bottom = 31.0
+tooltip_text = "Search for destination folder"
+icon = ExtResource("2_33qnu")
+flat = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+offset_top = 352.0
+offset_right = 1152.0
+offset_bottom = 383.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+offset_left = 467.0
+offset_top = 2.0
+offset_right = 598.0
+offset_bottom = 28.0
+text = "Single Sprite Size"
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+offset_left = 602.0
+offset_right = 685.0
+offset_bottom = 31.0
+tooltip_text = "Size of both x and y of individual sprite."
+min_value = 1.0
+value = 16.0
+alignment = 1
+update_on_text_changed = true
+suffix = "x"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+offset_top = 387.0
+offset_right = 1152.0
+offset_bottom = 413.0
+alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+offset_left = 504.0
+offset_right = 530.0
+offset_bottom = 26.0
+size_flags_horizontal = 4
+tooltip_text = "The math starts becoming intensive under 8x8 for larger images. To not accidentally stall or crash Godot, confirm your individual sprites are less than 8x8."
+flat = true
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+offset_left = 534.0
+offset_right = 647.0
+offset_bottom = 26.0
+text = "Less than 8x8?"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+offset_top = 348.0
+offset_right = 1152.0
+offset_bottom = 379.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+offset_left = 508.0
+offset_top = 2.0
+offset_right = 556.0
+offset_bottom = 28.0
+text = "Delay:"
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+offset_left = 560.0
+offset_right = 643.0
+offset_bottom = 31.0
+tooltip_text = "Delay between frames. Default is 1 second."
+min_value = 0.05
+max_value = 10.0
+step = 0.1
+value = 1.0
+allow_greater = true
+alignment = 1
+update_on_text_changed = true
+suffix = "s"
+
+[node name="MakeSpritesButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+offset_top = 417.0
+offset_right = 1152.0
+offset_bottom = 471.0
+text = "Make Sprites"
+
+[connection signal="pressed" from="VBoxContainer/FileDestCont/SearchDestButt" to="VBoxContainer/DropZone" method="_on_search_dest_butt_pressed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/SpinBox" to="VBoxContainer/DropZone" method="_on_size_value_changed"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer3/CheckBox" to="VBoxContainer/DropZone" method="_on_check_box_toggled"]
+[connection signal="pressed" from="VBoxContainer/MakeSpritesButton" to="VBoxContainer/DropZone" method="_on_make_text_pressed"]
